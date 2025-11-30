@@ -1,0 +1,81 @@
+/* Full page wrapper */
+.customer-details {
+  color: #f3f4f6;
+  padding: 1.5rem;
+  max-width: 850px;
+  margin: auto;
+}
+
+/* Name title */
+.customer-details h1 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #38bdf8;
+  margin-bottom: 0.5rem;
+}
+
+/* Contact info text */
+.customer-info p {
+  margin: 0.25rem 0;
+  font-size: 0.95rem;
+  color: #d1d5db;
+}
+
+/* Orders Section Title */
+.orders-title {
+  margin-top: 2rem;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #3b82f6;
+}
+
+/* Each order card */
+.order-card {
+  background: #1f2937;
+  padding: 1rem;
+  border-radius: 0.6rem;
+  margin-top: 1rem;
+  border: 1px solid #374151;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.35);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.order-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.45);
+}
+
+/* Order header */
+.order-header {
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+/* Table styling */
+.order-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 0.4rem;
+}
+
+.order-table th {
+  text-align: left;
+  padding: 0.6rem;
+  background: #111827;
+  border-bottom: 1px solid #374151;
+  color: #93c5fd;
+  font-weight: 500;
+}
+
+.order-table td {
+  padding: 0.6rem;
+  border-bottom: 1px solid #1f2937;
+  color: #e5e7eb;
+}
+
+/* No orders text */
+.no-orders-text {
+  color: #9ca3af;
+  margin-top: 0.5rem;
+}

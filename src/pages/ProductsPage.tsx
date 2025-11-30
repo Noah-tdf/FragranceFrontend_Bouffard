@@ -4,6 +4,7 @@ import Pagination from "../components/Pagination";
 import SearchBar from "../components/SearchBar";
 import ProductModal from "../modals/ProductModal";
 import ConfirmDeleteModal from "../modals/ConfirmDeleteModal";
+import "./ProductsPage.css";
 
 interface ProductData {
   id?: number;
@@ -56,19 +57,16 @@ export default function ProductsPage() {
   };
 
   const handleEdit = (product: Product) => {
-    setEditProduct(product); // keep the id!
+    setEditProduct(product);
     setModalOpen(true);
   };
 
   const handleSave = async (data: ProductData) => {
     const payload = { ...data, price: Number(data.price) };
 
-    // CREATE
     if (!data.id) {
       await api.post("/products", payload);
-    }
-    // UPDATE
-    else {
+    } else {
       await api.put(`/products/${data.id}`, payload);
     }
 
@@ -92,10 +90,10 @@ export default function ProductsPage() {
   };
 
   return (
-    <div>
-      <h1>Products</h1>
+    <div className="products-page">
+      <h1 className="products-title">Products</h1>
 
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+      <div className="top-controls">
         <SearchBar
           value={search}
           onChange={(value) => {
@@ -104,35 +102,47 @@ export default function ProductsPage() {
           }}
           placeholder="Search by name, brand, category, description, notes"
         />
-        <button onClick={handleAdd}>Add Product</button>
+
+        <button className="add-btn" onClick={handleAdd}>
+          Add Product
+        </button>
       </div>
 
-      <table style={{ width: "100%", borderCollapse: "collapse", marginTop: "1rem" }}>
+      <table className="products-table">
         <thead>
           <tr>
-            <th style={th}>Name</th>
-            <th style={th}>Brand</th>
-            <th style={th}>Category</th>
-            <th style={th}>Price</th>
-            <th style={th}>Actions</th>
+            <th className="products-th">Name</th>
+            <th className="products-th">Brand</th>
+            <th className="products-th">Category</th>
+            <th className="products-th">Price</th>
+            <th className="products-th">Actions</th>
           </tr>
         </thead>
+
         <tbody>
           {visible.map((p) => (
             <tr key={p.id}>
-              <td style={td}>{p.name}</td>
-              <td style={td}>{p.brand}</td>
-              <td style={td}>{p.category}</td>
-              <td style={td}>${p.price.toFixed(2)}</td>
-              <td style={td}>
-                <button onClick={() => handleEdit(p)}>Edit</button>
-                <button onClick={() => handleDeleteClick(p)}>Delete</button>
+              <td className="products-td">{p.name}</td>
+              <td className="products-td">{p.brand}</td>
+              <td className="products-td">{p.category}</td>
+              <td className="products-td">${p.price.toFixed(2)}</td>
+              <td className="products-td">
+                <button className="action-btn action-edit" onClick={() => handleEdit(p)}>
+                  Edit
+                </button>
+
+                <button className="action-btn action-delete" onClick={() => handleDeleteClick(p)}>
+                  Delete
+                </button>
               </td>
             </tr>
           ))}
+
           {visible.length === 0 && (
             <tr>
-              <td colSpan={5} style={td}>No products found.</td>
+              <td className="products-td" colSpan={5}>
+                No products found.
+              </td>
             </tr>
           )}
         </tbody>
@@ -163,14 +173,3 @@ export default function ProductsPage() {
     </div>
   );
 }
-
-const th: React.CSSProperties = {
-  borderBottom: "1px solid #e5e7eb",
-  textAlign: "left",
-  padding: "0.5rem",
-};
-
-const td: React.CSSProperties = {
-  borderBottom: "1px solid #f3f4f6",
-  padding: "0.5rem",
-};

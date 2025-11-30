@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { api } from "../api/api";
+import "./OrderModal.css";
 
 interface Customer {
   id: number;
@@ -108,14 +109,11 @@ export default function OrderModal({ open, onClose, onSave, initialData }: Props
   };
 
   return (
-    <div style={overlayStyle}>
-      <div style={modalStyle}>
+    <div className="order-overlay">
+      <div className="order-modal">
         <h2>{initialData ? "Edit Order" : "Create Order"}</h2>
 
-        <form
-          onSubmit={handleSubmit}
-          style={{ display: "flex", flexDirection: "column", gap: "1rem" }}
-        >
+        <form onSubmit={handleSubmit} className="order-form">
           <select
             value={customerId}
             onChange={(e) => setCustomerId(Number(e.target.value))}
@@ -131,10 +129,7 @@ export default function OrderModal({ open, onClose, onSave, initialData }: Props
           <h3>Items</h3>
 
           {items.map((item, index) => (
-            <div
-              key={index}
-              style={{ display: "flex", gap: "0.5rem", alignItems: "center" }}
-            >
+            <div key={index} className="order-item-row">
               <select
                 value={item.productId}
                 onChange={(e) =>
@@ -156,22 +151,35 @@ export default function OrderModal({ open, onClose, onSave, initialData }: Props
                 onChange={(e) =>
                   handleItemChange(index, "quantity", Number(e.target.value))
                 }
-                style={{ width: "60px" }}
               />
 
-              <button type="button" onClick={() => removeItem(index)}>
+              <button
+                type="button"
+                className="order-remove-btn"
+                onClick={() => removeItem(index)}
+              >
                 X
               </button>
             </div>
           ))}
 
-          <button type="button" onClick={addItem}>
+          <button
+            type="button"
+            onClick={addItem}
+            className="order-add-btn"
+          >
             + Add Item
           </button>
 
-          <div style={{ display: "flex", gap: "0.5rem", marginTop: "1rem" }}>
-            <button type="submit">Save Order</button>
-            <button type="button" onClick={onClose}>
+          <div style={{ display: "flex", gap: "0.6rem" }}>
+            <button type="submit" className="order-save-btn">
+              Save Order
+            </button>
+            <button
+              type="button"
+              className="order-cancel-btn"
+              onClick={onClose}
+            >
               Cancel
             </button>
           </div>
@@ -180,19 +188,3 @@ export default function OrderModal({ open, onClose, onSave, initialData }: Props
     </div>
   );
 }
-
-const overlayStyle: React.CSSProperties = {
-  position: "fixed",
-  inset: 0,
-  background: "rgba(0,0,0,0.5)",
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center"
-};
-
-const modalStyle: React.CSSProperties = {
-  background: "white",
-  padding: "1.5rem",
-  borderRadius: "0.5rem",
-  minWidth: "350px"
-};

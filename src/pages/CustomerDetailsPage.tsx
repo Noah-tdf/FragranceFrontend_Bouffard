@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { api } from "../api/api";
+import "./CustomerDetailsPage.css";
 
 interface OrderItem {
   id: number;
@@ -29,69 +30,59 @@ export default function CustomerDetailsPage() {
   const [customer, setCustomer] = useState<Customer | null>(null);
   const [orders, setOrders] = useState<Order[]>([]);
 
-  const fetchCustomer = async () => {
-    const res = await api.get<Customer>(`/customers/${id}`);
-    setCustomer(res.data);
-  };
-
-  const fetchOrders = async () => {
-    const res = await api.get<Order[]>(`/orders/customers/${id}`);
-    setOrders(res.data);
-  };
-
   useEffect(() => {
-    fetchCustomer();
-    fetchOrders();
+    const loadData = async () => {
+      const c = await api.get<Customer>(`/customers/${id}`);
+      const o = await api.get<Order[]>(`/orders/customers/${id}`);
+
+      setCustomer(c.data);
+      setOrders(o.data);
+    };
+
+    loadData();
   }, [id]);
 
   if (!customer) return <p>Loading...</p>;
 
   return (
-    <div>
+    <div className="customer-details">
       <h1>
         {customer.firstName} {customer.lastName}
       </h1>
-      <p>Email: {customer.email}</p>
-      <p>Phone: {customer.phone}</p>
 
-      <h2 style={{ marginTop: "1.5rem" }}>Orders</h2>
-      {orders.length === 0 && <p>No orders for this customer yet.</p>}
+      <div className="customer-info">
+        <p>Email: {customer.email}</p>
+        <p>Phone: {customer.phone}</p>
+      </div>
+
+      <h2 className="orders-title">Orders</h2>
+      {orders.length === 0 && (
+        <p className="no-orders-text">No orders for this customer yet.</p>
+      )}
 
       {orders.map((order) => (
-        <div
-          key={order.id}
-          style={{
-            border: "1px solid #e5e7eb",
-            borderRadius: "0.5rem",
-            padding: "0.75rem",
-            marginTop: "0.75rem",
-          }}
-        >
-          <p>
-            <strong>Order #{order.id}</strong> — {order.orderDate} — Total: ${order.totalAmount.toFixed(2)}
+        <div key={order.id} className="order-card">
+          <p className="order-header">
+            <strong>Order #{order.id}</strong> • {order.orderDate} •{" "}
+            Total: ${order.totalAmount.toFixed(2)}
           </p>
 
           {order.items && order.items.length > 0 && (
-            <table
-              style={{
-                width: "100%",
-                borderCollapse: "collapse",
-                marginTop: "0.5rem",
-              }}
-            >
+            <table className="order-table">
               <thead>
                 <tr>
-                  <th style={th}>Product</th>
-                  <th style={th}>Quantity</th>
-                  <th style={th}>Subtotal</th>
+                  <th>Product</th>
+                  <th>Quantity</th>
+                  <th>Subtotal</th>
                 </tr>
               </thead>
+
               <tbody>
                 {order.items.map((item) => (
                   <tr key={item.id}>
-                    <td style={td}>{item.productName}</td>
-                    <td style={td}>{item.quantity}</td>
-                    <td style={td}>${item.subtotal.toFixed(2)}</td>
+                    <td>{item.productName}</td>
+                    <td>{item.quantity}</td>
+                    <td>${item.subtotal.toFixed(2)}</td>
                   </tr>
                 ))}
               </tbody>
@@ -102,14 +93,3 @@ export default function CustomerDetailsPage() {
     </div>
   );
 }
-
-const th: React.CSSProperties = {
-  borderBottom: "1px solid #e5e7eb",
-  textAlign: "left",
-  padding: "0.4rem",
-};
-
-const td: React.CSSProperties = {
-  borderBottom: "1px solid #f3f4f6",
-  padding: "0.4rem",
-};

@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { api } from "../api/api";
 import OrderModal from "../modals/OrderModal";
 import type { InitialData, OrderItemInput } from "../modals/OrderModal";
+import "./OrdersPage.css";
 
 interface OrderItem {
   id: number;
@@ -100,41 +101,33 @@ export default function OrdersPage() {
   };
 
   return (
-    <div>
-      <h1>Orders</h1>
+    <div className="orders-page">
+      <h1 className="orders-title">Orders</h1>
 
-      <button onClick={handleCreateOrderClick}>+ Create Order</button>
+      <button className="create-btn" onClick={handleCreateOrderClick}>
+        + Create Order
+      </button>
 
       {orders.length === 0 && <p>No orders found.</p>}
 
       {orders.map((order) => (
-        <div
-          key={order.id}
-          style={{
-            border: "1px solid #e5e7eb",
-            borderRadius: "0.5rem",
-            padding: "0.75rem",
-            marginTop: "0.75rem",
-          }}
-        >
+        <div key={order.id} className="order-card">
           <div
-            style={{ cursor: "pointer" }}
+            className="order-header"
             onClick={() => navigate(`/orders/${order.id}`)}
           >
-            <p>
-              <strong>Order #{order.id}</strong> — Date: {order.orderDate} — Total: $
-              {order.totalAmount.toFixed(2)}
+            <p className="order-title">
+              Order #{order.id} — {order.orderDate}
             </p>
-
-            <p>
+            <p className="order-customer">
               Customer: {order.customerFirstName} {order.customerLastName}
             </p>
 
             {order.items && order.items.length > 0 && (
-              <ul>
+              <ul className="order-items">
                 {order.items.map((item) => (
                   <li key={item.id}>
-                    {item.productName} — Qty: {item.quantity} — Subtotal: $
+                    {item.productName} — Qty {item.quantity} — $
                     {item.subtotal.toFixed(2)}
                   </li>
                 ))}
@@ -142,9 +135,17 @@ export default function OrdersPage() {
             )}
           </div>
 
-          <div style={{ marginTop: "0.5rem", display: "flex", gap: "0.5rem" }}>
-            <button onClick={() => handleEditOrderClick(order)}>Edit</button>
-            <button onClick={() => handleDeleteOrder(order.id)}>Delete</button>
+          <div className="action-row">
+            <button className="action-btn action-edit" onClick={() => handleEditOrderClick(order)}>
+              Edit
+            </button>
+
+            <button
+              className="action-btn action-delete"
+              onClick={() => handleDeleteOrder(order.id)}
+            >
+              Delete
+            </button>
           </div>
         </div>
       ))}

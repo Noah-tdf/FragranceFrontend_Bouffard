@@ -1,15 +1,22 @@
 .navbar {
-  background-color: #0d1b2a;
-  padding: 1rem;
+  background: rgba(13, 17, 23, 0.85);
+  backdrop-filter: blur(12px);
+  padding: 1.2rem 3rem;
+  display: flex;
+  gap: 2.2rem;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  box-shadow: 0 3px 15px rgba(0,0,0,0.35);
 }
 
 .navbar a {
-  color: white;
-  margin-right: 1.5rem;
+  color: #bfc5d1;
   text-decoration: none;
+  font-size: 1.05rem;
   font-weight: 600;
+  transition: 0.25s ease;
 }
 
 .navbar a:hover {
   color: #4cc9f0;
+  text-shadow: 0 0 10px rgba(76,201,240,0.7);
 }

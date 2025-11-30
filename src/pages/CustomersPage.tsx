@@ -5,6 +5,7 @@ import Pagination from "../components/Pagination";
 import SearchBar from "../components/SearchBar";
 import CustomerModal from "../modals/CustomerModal";
 import ConfirmDeleteModal from "../modals/ConfirmDeleteModal";
+import "./CustomersPage.css";
 
 const PAGE_SIZE = 5;
 
@@ -20,8 +21,10 @@ export default function CustomersPage() {
   const [customers, setCustomers] = useState<Customer[]>([]);
   const [search, setSearch] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+
   const [modalOpen, setModalOpen] = useState(false);
   const [editCustomer, setEditCustomer] = useState<Customer | null>(null);
+
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
   const [customerToDelete, setCustomerToDelete] = useState<Customer | null>(null);
 
@@ -42,8 +45,7 @@ export default function CustomersPage() {
   });
 
   const totalPages = Math.ceil(filtered.length / PAGE_SIZE) || 1;
-  const startIndex = (currentPage - 1) * PAGE_SIZE;
-  const visible = filtered.slice(startIndex, startIndex + PAGE_SIZE);
+  const visible = filtered.slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE);
 
   const handleAdd = () => {
     setEditCustomer(null);
@@ -85,64 +87,64 @@ export default function CustomersPage() {
   };
 
   return (
-    <div>
-      <h1>Customers</h1>
+    <div className="customers-page">
+      <h1 className="customers-title">Customers</h1>
 
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+      <div className="customers-top">
         <SearchBar
           value={search}
-          onChange={(value: string) => {
+          onChange={(value) => {
             setSearch(value);
             setCurrentPage(1);
           }}
           placeholder="Search by name, email, or phone"
         />
-        <button onClick={handleAdd}>Add Customer</button>
+        <button className="add-btn" onClick={handleAdd}>
+          Add Customer
+        </button>
       </div>
 
-      <table
-        style={{
-          width: "100%",
-          borderCollapse: "collapse",
-          marginTop: "1rem",
-        }}
-      >
-        <thead>
-          <tr>
-            <th style={th}>Name</th>
-            <th style={th}>Email</th>
-            <th style={th}>Phone</th>
-            <th style={th}>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {visible.map((c) => (
-            <tr key={c.id}>
-              <td style={td} onClick={() => handleRowClick(c)}>
-                {c.firstName} {c.lastName}
-              </td>
-              <td style={td} onClick={() => handleRowClick(c)}>{c.email}</td>
-              <td style={td} onClick={() => handleRowClick(c)}>{c.phone}</td>
-              <td style={td}>
-                <button onClick={() => handleEdit(c)}>Edit</button>
-                <button onClick={() => handleDeleteClick(c)}>Delete</button>
-              </td>
-            </tr>
-          ))}
-          {visible.length === 0 && (
+      <div className="table-wrapper">
+        <table className="customers-table">
+          <thead>
             <tr>
-              <td colSpan={4} style={td}>
-                No customers found.
-              </td>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th>Actions</th>
             </tr>
-          )}
-        </tbody>
-      </table>
+          </thead>
+
+          <tbody>
+            {visible.map((c) => (
+              <tr key={c.id}>
+                <td onClick={() => handleRowClick(c)}>
+                  {c.firstName} {c.lastName}
+                </td>
+                <td onClick={() => handleRowClick(c)}>{c.email}</td>
+                <td onClick={() => handleRowClick(c)}>{c.phone}</td>
+                <td>
+                  <button className="row-btn" onClick={() => handleEdit(c)}>Edit</button>
+                  <button className="row-btn" onClick={() => handleDeleteClick(c)}>Delete</button>
+                </td>
+              </tr>
+            ))}
+
+            {visible.length === 0 && (
+              <tr>
+                <td colSpan={4} className="empty-row">
+                  No customers found.
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
 
       <Pagination
         currentPage={currentPage}
         totalPages={totalPages}
-        onPageChange={(page: number) => setCurrentPage(page)}
+        onPageChange={(page) => setCurrentPage(page)}
       />
 
       <CustomerModal
@@ -168,15 +170,3 @@ export default function CustomersPage() {
     </div>
   );
 }
-
-const th: React.CSSProperties = {
-  borderBottom: "1px solid #e5e7eb",
-  textAlign: "left",
-  padding: "0.5rem",
-};
-
-const td: React.CSSProperties = {
-  borderBottom: "1px solid #f3f4f6",
-  padding: "0.5rem",
-  cursor: "pointer",
-};

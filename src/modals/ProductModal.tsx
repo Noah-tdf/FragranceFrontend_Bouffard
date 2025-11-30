@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import "./ProductModal.css";
 
 interface ProductData {
   id?: number;
@@ -64,39 +65,41 @@ export default function ProductModal({
   };
 
   return (
-    <div style={overlayStyle}>
-      <div style={modalStyle}>
+    <div className="product-overlay">
+      <div className="product-modal">
         <h2>{product.id ? "Edit Product" : "Add Product"}</h2>
 
-        <form
-          onSubmit={handleSubmit}
-          style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}
-        >
+        <form onSubmit={handleSubmit} className="product-form">
           <input
             placeholder="Name"
             value={product.name}
             onChange={(e) => handleChange("name", e.target.value)}
           />
+
           <input
             placeholder="Brand"
             value={product.brand}
             onChange={(e) => handleChange("brand", e.target.value)}
           />
+
           <input
             placeholder="Category"
             value={product.category}
             onChange={(e) => handleChange("category", e.target.value)}
           />
+
           <input
             placeholder="Description"
             value={product.description}
             onChange={(e) => handleChange("description", e.target.value)}
           />
+
           <input
             placeholder="Notes"
             value={product.notes}
             onChange={(e) => handleChange("notes", e.target.value)}
           />
+
           <input
             placeholder="Price"
             type="number"
@@ -105,28 +108,20 @@ export default function ProductModal({
             onChange={(e) => handleChange("price", e.target.value)}
           />
 
-          <div style={{ display: "flex", gap: "0.5rem", marginTop: "1rem" }}>
-            <button type="submit">Save</button>
-            <button type="button" onClick={onClose}>Cancel</button>
+          <div className="product-btn-row">
+            <button type="submit" className="product-save-btn">
+              Save
+            </button>
+            <button
+              type="button"
+              className="product-cancel-btn"
+              onClick={onClose}
+            >
+              Cancel
+            </button>
           </div>
         </form>
       </div>
     </div>
   );
 }
-
-const overlayStyle: React.CSSProperties = {
-  position: "fixed",
-  inset: 0,
-  background: "rgba(0,0,0,0.5)",
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-};
-
-const modalStyle: React.CSSProperties = {
-  background: "white",
-  padding: "1.5rem",
-  borderRadius: "0.5rem",
-  minWidth: "320px",
-};

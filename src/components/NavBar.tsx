@@ -1,39 +1,24 @@
-import { Link, useLocation } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "./NavBar.css";
 
-
-interface NavItem {
-  to: string;
-  name: string;
-}
-
 export default function Navbar() {
-  const location = useLocation();
-
-  const renderLink = ({ to, name }: NavItem) => (
-    <Link
-      to={to}
-      style={{
-        color:
-          location.pathname === to ||
-          location.pathname.startsWith(to)
-            ? "#38bdf8"
-            : "white",
-        marginRight: "1rem",
-        textDecoration: "none",
-        fontWeight: 600,
-      }}
-    >
-      {name}
-    </Link>
-  );
-
   return (
-    <nav style={{ background: "#111827", padding: "1rem", color: "white" }}>
-      {renderLink({ to: "/", name: "Home" })}
-      {renderLink({ to: "/customers", name: "Customers" })}
-      {renderLink({ to: "/products", name: "Products" })}
-      {renderLink({ to: "/orders", name: "Orders" })}
+    <nav className="navbar">
+      <NavLink to="/" end className="nav-item">
+        Home
+      </NavLink>
+
+      <NavLink to="/customers" className="nav-item">
+        Customers
+      </NavLink>
+
+      <NavLink to="/products" className="nav-item">
+        Products
+      </NavLink>
+
+      <NavLink to="/orders" className="nav-item">
+        Orders
+      </NavLink>
     </nav>
   );
 }

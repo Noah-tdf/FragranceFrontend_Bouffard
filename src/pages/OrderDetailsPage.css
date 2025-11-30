@@ -1,0 +1,108 @@
+.order-page {
+  padding: 2rem;
+  color: #f3f4f6;
+  max-width: 900px;
+  margin: auto;
+}
+
+/* Main title */
+.order-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #38bdf8;
+  margin-bottom: 1rem;
+  text-shadow: 0 0 10px rgba(56, 189, 248, 0.4);
+  animation: fadeInDown 0.4s ease-out;
+}
+
+/* Section titles */
+.section-title {
+  font-size: 1.4rem;
+  margin-top: 1.5rem;
+  color: #3b82f6;
+  font-weight: 600;
+}
+
+/* Order header card */
+.order-info-card {
+  background: #1f2937;
+  border: 1px solid #374151;
+  border-radius: 0.75rem;
+  padding: 1.2rem;
+  margin-top: 1rem;
+  box-shadow: 0 0 16px rgba(0, 0, 0, 0.45);
+  animation: fadeIn 0.5s ease-out;
+}
+
+.order-info-card p {
+  margin: 0.4rem 0;
+  color: #d1d5db;
+}
+
+/* Customer section */
+.customer-card {
+  background: #1f2937;
+  border: 1px solid #374151;
+  border-radius: 0.75rem;
+  padding: 1.2rem;
+  margin-top: 1rem;
+  box-shadow: 0 0 16px rgba(0, 0, 0, 0.45);
+}
+
+/* Items list */
+.items-card {
+  background: #1f2937;
+  border: 1px solid #374151;
+  border-radius: 0.75rem;
+  padding: 1.2rem;
+  margin-top: 1rem;
+  box-shadow: 0 0 16px rgba(0, 0, 0, 0.45);
+}
+
+/* Items table */
+.items-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 0.75rem;
+}
+
+.items-table th {
+  background: #111827;
+  color: #93c5fd;
+  padding: 0.7rem;
+  text-align: left;
+  border-bottom: 1px solid #374151;
+}
+
+.items-table td {
+  padding: 0.7rem;
+  border-bottom: 1px solid #1f2937;
+  color: #e5e7eb;
+}
+
+/* Back link */
+.back-link {
+  display: inline-block;
+  margin-top: 2rem;
+  color: #38bdf8;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.back-link:hover {
+  color: #7dd3fc;
+  text-shadow: 0 0 8px rgba(56, 189, 248, 0.5);
+  transform: translateX(-2px);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}

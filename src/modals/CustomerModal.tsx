@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import "./CustomerModal.css";
 
 interface CustomerData {
   firstName: string;
@@ -52,42 +53,47 @@ export default function CustomerModal({
   };
 
   return (
-    <div style={overlayStyle}>
-      <div style={modalStyle}>
-        <h2>{initialData ? "Edit Customer" : "Add Customer"}</h2>
+    <div className="modal-overlay">
+      <div className="modal-container">
+        <h2 className="modal-title">
+          {initialData ? "Edit Customer" : "Add Customer"}
+        </h2>
 
-        <form
-          onSubmit={handleSubmit}
-          style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}
-        >
+        <form className="modal-form" onSubmit={handleSubmit}>
           <input
+            className="modal-input"
             placeholder="First Name"
             value={customer.firstName}
             onChange={(e) => handleChange("firstName", e.target.value)}
           />
 
           <input
+            className="modal-input"
             placeholder="Last Name"
             value={customer.lastName}
             onChange={(e) => handleChange("lastName", e.target.value)}
           />
 
           <input
-            placeholder="Email"
+            className="modal-input"
             type="email"
+            placeholder="Email"
             value={customer.email}
             onChange={(e) => handleChange("email", e.target.value)}
           />
 
           <input
+            className="modal-input"
             placeholder="Phone"
             value={customer.phone}
             onChange={(e) => handleChange("phone", e.target.value)}
           />
 
-          <div style={{ display: "flex", gap: "0.5rem", marginTop: "1rem" }}>
-            <button type="submit">Save</button>
-            <button type="button" onClick={onClose}>
+          <div className="modal-buttons">
+            <button type="submit" className="btn-primary">
+              Save
+            </button>
+            <button type="button" className="btn-secondary" onClick={onClose}>
               Cancel
             </button>
           </div>
@@ -96,19 +102,3 @@ export default function CustomerModal({
     </div>
   );
 }
-
-const overlayStyle: React.CSSProperties = {
-  position: "fixed",
-  inset: 0,
-  background: "rgba(0,0,0,0.5)",
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-};
-
-const modalStyle: React.CSSProperties = {
-  background: "white",
-  padding: "1.5rem",
-  borderRadius: "0.5rem",
-  minWidth: "320px",
-};

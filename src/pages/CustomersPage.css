@@ -1,0 +1,101 @@
+/* Main wrapper */
+.customers-page {
+  color: #f3f4f6;
+  padding: 1.5rem;
+}
+
+/* Page title */
+.customers-title {
+  font-size: 1.8rem;
+  color: #38bdf8;
+  margin-bottom: 1.2rem;
+  font-weight: 600;
+}
+
+/* Top row: search + button */
+.customers-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+/* Add Customer button */
+.add-btn {
+  background: #3b82f6;
+  color: white;
+  border: none;
+  padding: 0.55rem 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.add-btn:hover {
+  filter: brightness(1.12);
+  transform: translateY(-2px);
+}
+
+/* Table container */
+.table-wrapper {
+  margin-top: 1rem;
+  overflow: hidden;
+  background: #1f2937;
+  border-radius: 0.6rem;
+  border: 1px solid #374151;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+}
+
+/* Full table */
+.customers-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* Table headers */
+.customers-table th {
+  background: #111827;
+  color: #93c5fd;
+  text-align: left;
+  padding: 0.75rem;
+  font-weight: 600;
+  border-bottom: 1px solid #374151;
+}
+
+/* Table rows */
+.customers-table td {
+  padding: 0.85rem;
+  color: #e5e7eb;
+  border-bottom: 1px solid #1f2937;
+}
+
+/* Row hover highlight */
+.customers-table tr:hover {
+  background: rgba(56, 189, 248, 0.08);
+  cursor: pointer;
+}
+
+/* Edit/Delete buttons */
+.row-btn {
+  background: #374151;
+  color: #e5e7eb;
+  border: none;
+  padding: 0.35rem 0.7rem;
+  border-radius: 0.4rem;
+  margin-right: 0.4rem;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.row-btn:hover {
+  background: #4b5563;
+  transform: translateY(-2px);
+}
+
+/* Empty row text */
+.empty-row {
+  text-align: center;
+  padding: 1rem;
+  color: #9ca3af;
+}

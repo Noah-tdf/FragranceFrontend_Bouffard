@@ -1,107 +1,183 @@
+/* ===========================
+   GLOBAL THEME
+=========================== */
+:root {
+  --bg: #f8fafc;
+  --card-bg: #ffffff;
+  --nav-bg: #111827;
+  --primary: #2563eb;
+  --primary-light: #3b82f6;
+  --accent: #38bdf8;
+  --text: #1e293b;
+  --text-light: #64748b;
+  --border: #e2e8f0;
+  --radius: 10px;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
 /* Global reset */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Inter", sans-serif;
-}
-
-/* Body styling */
 body {
-  background-color: #f7f8fa;
-  color: #1b1b1b;
-  line-height: 1.6;
+  margin: 0;
+  font-family: system-ui, Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--text);
 }
 
-/* Page container */
-main {
+/* Page layout */
+.page-container {
+  padding: 1.5rem;
   max-width: 1200px;
-  margin: auto;
-  padding: 2rem;
+  margin: 0 auto;
+  animation: fadeIn 0.3s ease-in-out;
 }
 
-/* Headings */
-h1, h2 {
-  margin-bottom: 1rem;
+/* Smooth fade-in animation for every page */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===========================
+   HEADERS
+=========================== */
+h1 {
+  font-size: 2rem;
   font-weight: 700;
-  color: #222;
+  margin-bottom: 1rem;
 }
 
-/* Navbar */
-.navbar {
-  background-color: #0d1b2a;
-  padding: 1rem 2rem;
-  display: flex;
-  gap: 2rem;
+h2 {
+  font-size: 1.4rem;
+  margin-top: 1.5rem;
 }
 
-.navbar a {
-  color: #f5f5f5;
-  text-decoration: none;
-  font-weight: 600;
-}
-
-.navbar a:hover {
-  color: #4cc9f0;
-}
-
-/* Tables */
+/* ===========================
+   TABLES
+=========================== */
 table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 1.5rem;
-  background: white;
-  border-radius: 8px;
+  margin-top: 1rem;
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
   overflow: hidden;
 }
 
 th {
-  background-color: #0d1b2a;
-  color: white;
-  padding: 0.75rem;
+  background: #f1f5f9;
   text-align: left;
-}
-
-td {
-  padding: 0.8rem;
-  border-bottom: 1px solid #ddd;
-}
-
-tr:nth-child(even) {
-  background-color: #f3f5f8;
-}
-
-/* Buttons */
-button {
-  padding: 0.5rem 1rem;
-  background-color: #0d1b2a;
-  border: none;
-  color: white;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 0.9rem;
-}
-
-button:hover {
-  background-color: #4cc9f0;
-}
-
-/* Add button */
-.add-button {
-  background-color: #4cc9f0;
-  color: black;
+  padding: 0.75rem;
+  border-bottom: 1px solid var(--border);
   font-weight: 600;
 }
 
-.add-button:hover {
-  background-color: #3a99c2;
+td {
+  padding: 0.75rem;
+  border-bottom: 1px solid var(--border);
 }
 
-/* Cards (Orders Page) */
-.order-card {
-  background: white;
-  padding: 1.5rem;
-  border-radius: 10px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  margin-bottom: 1.5rem;
+tr:hover td {
+  background: #f8fafc;
+}
+
+/* ===========================
+   BUTTONS
+=========================== */
+button {
+  padding: 0.45rem 0.9rem;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.15s ease;
+}
+
+button:hover {
+  background: var(--primary-light);
+  transform: translateY(-1px);
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Danger button (delete) */
+button.delete-btn {
+  background: #dc2626;
+}
+
+button.delete-btn:hover {
+  background: #ef4444;
+}
+
+/* ===========================
+   INPUTS & FORMS
+=========================== */
+input,
+select,
+textarea {
+  padding: 0.55rem;
+  font-size: 1rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  width: 100%;
+  box-sizing: border-box;
+  transition: 0.15s ease;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+  outline: none;
+}
+
+/* ===========================
+   CARDS
+=========================== */
+.card {
+  background: var(--card-bg);
+  padding: 1rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  margin-top: 1rem;
+  transition: 0.15s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+}
+
+/* ===========================
+   PAGINATION
+=========================== */
+.pagination {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+  align-items: center;
+}
+
+/* ===========================
+   LINKS
+=========================== */
+a {
+  color: var(--primary);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
 }

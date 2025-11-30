@@ -1,3 +1,5 @@
+import "./SearchBar.css";
+
 interface SearchBarProps {
   value: string;
   onChange: (value: string) => void;
@@ -11,15 +13,11 @@ export default function SearchBar({
 }: SearchBarProps) {
   return (
     <input
+      className="search-input"
       type="text"
       value={value}
       onChange={(e) => onChange(e.target.value)}
       placeholder={placeholder}
-      style={{
-        padding: "0.5rem",
-        minWidth: "260px",
-        marginBottom: "1rem",
-      }}
     />
   );
 }

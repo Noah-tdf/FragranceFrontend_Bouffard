@@ -14,7 +14,7 @@ function App() {
     <Router>
       <Navbar />
 
-      <main style={{ padding: "1.5rem" }}>
+      <main className="page-container">
         <Routes>
           <Route path="/" element={<HomePage />} />
 
@@ -30,5 +30,6 @@ function App() {
     </Router>
   );
 }
+
 
 export default App;

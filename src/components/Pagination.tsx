@@ -1,3 +1,5 @@
+import "./Pagination.css";
+
 interface PaginationProps {
   currentPage: number;
   totalPages: number;
@@ -12,19 +14,21 @@ export default function Pagination({
   if (totalPages <= 1) return null;
 
   return (
-    <div style={{ display: "flex", gap: "0.5rem", marginTop: "1rem" }}>
+    <div className="pagination-container">
       <button
+        className="pagination-btn"
         onClick={() => onPageChange(currentPage - 1)}
         disabled={currentPage === 1}
       >
         Previous
       </button>
 
-      <span>
+      <span className="pagination-label">
         Page {currentPage} / {totalPages}
       </span>
 
       <button
+        className="pagination-btn"
         onClick={() => onPageChange(currentPage + 1)}
         disabled={currentPage === totalPages}
       >
