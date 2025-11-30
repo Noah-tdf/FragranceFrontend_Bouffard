@@ -1,183 +1,211 @@
-/* ===========================
-   GLOBAL THEME
-=========================== */
-:root {
-  --bg: #f8fafc;
-  --card-bg: #ffffff;
-  --nav-bg: #111827;
-  --primary: #2563eb;
-  --primary-light: #3b82f6;
-  --accent: #38bdf8;
-  --text: #1e293b;
-  --text-light: #64748b;
-  --border: #e2e8f0;
-  --radius: 10px;
-  --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-}
-
-/* Global reset */
-body {
+/* ---------------------------
+   GLOBAL RESET + BASE STYLES
+----------------------------*/
+* {
   margin: 0;
-  font-family: system-ui, Arial, Helvetica, sans-serif;
-  background: var(--bg);
-  color: var(--text);
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
 }
 
-/* Page layout */
-.page-container {
-  padding: 1.5rem;
-  max-width: 1200px;
-  margin: 0 auto;
-  animation: fadeIn 0.3s ease-in-out;
+body {
+  background: #0d1117;
+  color: #e5e7eb;
+  min-height: 100vh;
+  line-height: 1.5;
 }
 
-/* Smooth fade-in animation for every page */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(6px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* Prevent the light gray unreadable text issue */
+h1, h2, h3, h4, h5, h6,
+p, span, td, th, label, a, strong {
+  color: #f3f4f6;
 }
 
-/* ===========================
-   HEADERS
-=========================== */
-h1 {
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
+/* ---------------------------
+   GLOBAL LINK STYLE
+----------------------------*/
+a {
+  color: #38bdf8;
+  text-decoration: none;
+  transition: 0.2s ease;
 }
 
-h2 {
-  font-size: 1.4rem;
-  margin-top: 1.5rem;
+a:hover {
+  color: #7dd3fc;
 }
 
-/* ===========================
-   TABLES
-=========================== */
+/* ---------------------------
+   GLOBAL CARD STYLE
+----------------------------*/
+.card {
+  background: #1f2937;
+  border: 1px solid #374151;
+  border-radius: 0.75rem;
+  padding: 1rem;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+  transition: 0.25s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  border-color: #38bdf8;
+}
+
+/* ---------------------------
+   GLOBAL BUTTONS
+----------------------------*/
+button {
+  padding: 0.55rem 1rem;
+  border-radius: 0.5rem;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+/* Primary (blue) */
+.btn-primary {
+  background: #2563eb;
+  color: white;
+}
+.btn-primary:hover {
+  background: #1d4ed8;
+  box-shadow: 0 0 8px rgba(37, 99, 235, 0.5);
+}
+
+/* Secondary */
+.btn-secondary {
+  background: #374151;
+  color: #e5e7eb;
+}
+.btn-secondary:hover {
+  background: #4b5563;
+}
+
+/* Success (green) */
+.btn-success {
+  background: #10b981;
+  color: white;
+}
+.btn-success:hover {
+  filter: brightness(1.12);
+}
+
+/* Danger (red) */
+.btn-danger {
+  background: #dc2626;
+  color: white;
+}
+.btn-danger:hover {
+  background: #ef4444;
+}
+
+/* Small action buttons */
+.btn-sm {
+  padding: 0.35rem 0.7rem;
+  border-radius: 0.4rem;
+  font-size: 0.85rem;
+}
+
+/* ---------------------------
+   GLOBAL INPUTS
+----------------------------*/
+input, select, textarea {
+  padding: 0.6rem 0.9rem;
+  background: #111827;
+  color: #f3f4f6;
+  border: 1px solid #374151;
+  border-radius: 8px;
+  outline: none;
+  transition: 0.25s ease;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: #38bdf8;
+  box-shadow: 0 0 8px rgba(56, 189, 248, 0.45);
+}
+
+/* Placeholder color */
+input::placeholder, textarea::placeholder {
+  color: #9ca3af;
+}
+
+/* ---------------------------
+   GLOBAL TABLE THEME
+----------------------------*/
 table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 1rem;
-  background: var(--card-bg);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  overflow: hidden;
 }
 
 th {
-  background: #f1f5f9;
+  background: #111827;
+  color: #93c5fd !important;
   text-align: left;
   padding: 0.75rem;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid #374151;
   font-weight: 600;
 }
 
 td {
-  padding: 0.75rem;
-  border-bottom: 1px solid var(--border);
+  padding: 0.85rem;
+  border-bottom: 1px solid #1f2937;
+  color: #e5e7eb !important;
 }
 
-tr:hover td {
-  background: #f8fafc;
+tr:hover {
+  background: rgba(56, 189, 248, 0.08);
 }
 
-/* ===========================
-   BUTTONS
-=========================== */
-button {
-  padding: 0.45rem 0.9rem;
-  background: var(--primary);
-  color: white;
-  border: none;
-  border-radius: var(--radius);
-  cursor: pointer;
-  font-weight: 600;
-  transition: 0.15s ease;
-}
-
-button:hover {
-  background: var(--primary-light);
-  transform: translateY(-1px);
-}
-
-button:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-/* Danger button (delete) */
-button.delete-btn {
-  background: #dc2626;
-}
-
-button.delete-btn:hover {
-  background: #ef4444;
-}
-
-/* ===========================
-   INPUTS & FORMS
-=========================== */
-input,
-select,
-textarea {
-  padding: 0.55rem;
-  font-size: 1rem;
-  border-radius: var(--radius);
-  border: 1px solid var(--border);
-  width: 100%;
-  box-sizing: border-box;
-  transition: 0.15s ease;
-}
-
-input:focus,
-select:focus,
-textarea:focus {
-  border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
-  outline: none;
-}
-
-/* ===========================
-   CARDS
-=========================== */
-.card {
-  background: var(--card-bg);
-  padding: 1rem;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  margin-top: 1rem;
-  transition: 0.15s ease;
-}
-
-.card:hover {
-  transform: translateY(-2px);
-}
-
-/* ===========================
-   PAGINATION
-=========================== */
-.pagination {
+/* ---------------------------
+   GLOBAL MODAL STYLING
+----------------------------*/
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(6px);
   display: flex;
-  gap: 0.5rem;
-  margin-top: 1.5rem;
+  justify-content: center;
   align-items: center;
+  animation: fadeIn 0.25s ease-out;
+  z-index: 100;
 }
 
-/* ===========================
-   LINKS
-=========================== */
-a {
-  color: var(--primary);
-  font-weight: 600;
-  text-decoration: none;
+.modal-container {
+  background: #1f2937;
+  color: #f3f4f6;
+  padding: 1.8rem;
+  border-radius: 12px;
+  min-width: 360px;
+  box-shadow: 0 0 25px rgba(0,0,0,0.4);
+  animation: scaleIn 0.2s ease-out;
 }
 
-a:hover {
-  text-decoration: underline;
+/* ---------------------------
+   GLOBAL ANIMATIONS
+----------------------------*/
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.93);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ---------------------------
+   GLOBAL PAGE WRAPPER
+----------------------------*/
+.page {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: auto;
 }
