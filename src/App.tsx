@@ -6,7 +6,7 @@ import CustomerDetailsPage from "./pages/CustomerDetailsPage";
 import ProductsPage from "./pages/ProductsPage";
 import OrdersPage from "./pages/OrdersPage";
 import OrderDetailsPage from "./pages/OrderDetailsPage";
-console.log("API URL =", import.meta.env.VITE_API_URL);
+
 
 
 function App() {
