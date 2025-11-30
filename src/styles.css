@@ -1,0 +1,107 @@
+/* Global reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+}
+
+/* Body styling */
+body {
+  background-color: #f7f8fa;
+  color: #1b1b1b;
+  line-height: 1.6;
+}
+
+/* Page container */
+main {
+  max-width: 1200px;
+  margin: auto;
+  padding: 2rem;
+}
+
+/* Headings */
+h1, h2 {
+  margin-bottom: 1rem;
+  font-weight: 700;
+  color: #222;
+}
+
+/* Navbar */
+.navbar {
+  background-color: #0d1b2a;
+  padding: 1rem 2rem;
+  display: flex;
+  gap: 2rem;
+}
+
+.navbar a {
+  color: #f5f5f5;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.navbar a:hover {
+  color: #4cc9f0;
+}
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1.5rem;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+th {
+  background-color: #0d1b2a;
+  color: white;
+  padding: 0.75rem;
+  text-align: left;
+}
+
+td {
+  padding: 0.8rem;
+  border-bottom: 1px solid #ddd;
+}
+
+tr:nth-child(even) {
+  background-color: #f3f5f8;
+}
+
+/* Buttons */
+button {
+  padding: 0.5rem 1rem;
+  background-color: #0d1b2a;
+  border: none;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+button:hover {
+  background-color: #4cc9f0;
+}
+
+/* Add button */
+.add-button {
+  background-color: #4cc9f0;
+  color: black;
+  font-weight: 600;
+}
+
+.add-button:hover {
+  background-color: #3a99c2;
+}
+
+/* Cards (Orders Page) */
+.order-card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  margin-bottom: 1.5rem;
+}

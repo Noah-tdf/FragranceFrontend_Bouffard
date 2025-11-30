@@ -1,4 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
+import "./NavBar.css";
+
 
 interface NavItem {
   to: string;
