@@ -29,6 +29,10 @@ export default function OrdersPage() {
   const [orders, setOrders] = useState<Order[]>([]);
   const [modalOpen, setModalOpen] = useState(false);
   const [editingOrder, setEditingOrder] = useState<Order | null>(null);
+
+  // 🔍 SEARCH STATE
+  const [search, setSearch] = useState("");
+
   const navigate = useNavigate();
 
   const fetchOrders = async () => {
@@ -100,17 +104,31 @@ export default function OrdersPage() {
     };
   };
 
+  const filteredOrders = orders.filter((order) => {
+    const fullName = `${order.customerFirstName} ${order.customerLastName}`.toLowerCase();
+    return fullName.includes(search.toLowerCase());
+  });
+
   return (
     <div className="orders-page">
       <h1 className="orders-title">Orders</h1>
+
+      {/* 🔍 SEARCH INPUT */}
+      <input
+        className="search-input"
+        type="text"
+        placeholder="Search by customer name..."
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+      />
 
       <button className="create-btn" onClick={handleCreateOrderClick}>
         + Create Order
       </button>
 
-      {orders.length === 0 && <p>No orders found.</p>}
+      {filteredOrders.length === 0 && <p>No matching orders found.</p>}
 
-      {orders.map((order) => (
+      {filteredOrders.map((order) => (
         <div key={order.id} className="order-card">
           <div
             className="order-header"
@@ -136,7 +154,10 @@ export default function OrdersPage() {
           </div>
 
           <div className="action-row">
-            <button className="action-btn action-edit" onClick={() => handleEditOrderClick(order)}>
+            <button
+              className="action-btn action-edit"
+              onClick={() => handleEditOrderClick(order)}
+            >
               Edit
             </button>
 
